@@ -106,7 +106,7 @@ services:
     networks:
       - highway_network
     volumes:
-      - ~/.dbt:/root/.dbt
+      - ./dbt_highway_psql/profiles.yml:/root/.dbt/profiles.yml
       - ./dbt_highway_psql:/dbt
     working_dir: /usr/app/dbt_project
     environment:

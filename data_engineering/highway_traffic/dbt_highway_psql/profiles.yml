@@ -3,7 +3,7 @@ dbt_highway_psql:
     dev:
       dbname: "highway_traffic"
       host: localhost
-      pass: soark_password
+      pass: spark_password
       port: 5432
       schema: public
       threads: 1
