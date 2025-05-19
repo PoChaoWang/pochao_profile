@@ -1,0 +1,23 @@
+services:
+  - type: cron
+    name: f1-news-cron
+    schedule: daily
+    runtime: python
+    buildCommand: ""
+    startCommand: "python main.py"
+    envVars:
+      - key: SUPABASE_URL
+        value: your_supabase_url
+      - key: SUPABASE_KEY
+        value: your_supabase_key
+
+  - type: web
+    name: f1-news-api
+    runtime: python
+    buildCommand: ""
+    startCommand: "uvicorn api:app --host 0.0.0.0 --port 10000"
+    envVars:
+      - key: SUPABASE_URL
+        value: your_supabase_url
+      - key: SUPABASE_KEY
+        value: your_supabase_key

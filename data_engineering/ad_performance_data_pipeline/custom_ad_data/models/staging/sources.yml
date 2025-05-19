@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: destination_db
+    description: "Raw data from the destination PostgreSQL database."
+    database: destination_db
+    schema: public
+    tables:
+      - name: criteo_data
+        description: "Criteo raw data"
+      - name: facebook_data
+        description: "Facebbok raw data"
+      - name: ga_data
+        description: "All platform's Google Analytics raw data"
+      - name: google_data
+        description: "Google raw data"
+      - name: yahoo_data
+        description: "Yahoo Native raw data"

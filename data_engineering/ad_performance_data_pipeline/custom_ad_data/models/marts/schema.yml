@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: fct_criteo
+    description: "This table contains details about criteo."
+
+  - name: fct_facebook
+    description: "This table contains details about facebook."
+
+  - name: fct_google
+    description: "This table contains details about google."
+
+  - name: fct_yahoo
+    description: "This table contains details about yahoo."
+
+  - name: fct_ga
+    description: "This table contains details about ga."
+
+  - name: fct_all_platform_with_ga
+    description: "Combined all tables"

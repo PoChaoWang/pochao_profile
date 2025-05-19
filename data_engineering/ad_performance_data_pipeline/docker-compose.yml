@@ -1,0 +1,110 @@
+services:
+  
+  destination_postgres:
+    image: postgres:15.1
+    ports:
+      - "5434:5432"
+    networks:
+      - etl_network
+    environment:
+      POSTGRES_DB: destination_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./destination_db_data:/var/lib/postgresql/data
+
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:1.9.0
+    platform: linux/amd64
+    networks:
+      - etl_network
+    volumes:
+      - ~/.dbt:/root
+      - ./custom_ad_data:/dbt
+    environment:
+      DBT_PROFILE: custom_ad_data
+      DBT_TARGET: dev
+
+  init-airflow:
+    image: apache/airflow:latest
+    networks:
+      - etl_network
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    depends_on:
+      - dbt
+    command: >
+      bash -c "airflow db init &&
+      airflow users create --username airflow --password password --firstname pochao --lastname wang --role Admin --email admin@postgres"
+
+  postgres:
+    image: postgres:15.1
+    networks:
+      - etl_network
+    depends_on:
+      - init-airflow
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: airflow
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+
+  webserver:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    user: root
+    depends_on:
+      - postgres
+    networks:
+      - etl_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./etl:/opt/airflow/etl
+      - ./raw-data:/app/raw-data
+      - ./custom_ad_data:/dbt
+      - ~/.dbt:/root
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      # If the data is sensitive, please use the fernet_key
+      # You can pip3 install cryptography.
+      # Then execute the following command in the terminal.
+      # python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+      # AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY}
+      AIRFLOW__WEBSERVER__SECRET_KEY: secret
+    ports:
+      - "8080:8080"
+    command: webserver
+
+  scheduler:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    user: root
+    depends_on:
+      - postgres
+    networks:
+      - etl_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./etl:/opt/airflow/etl
+      - ./raw-data:/app/raw-data
+      - ./custom_ad_data:/dbt
+      - ~/.dbt:/root
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      # AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY}
+      AIRFLOW__WEBSERVER__SECRET_KEY: secret
+    command: scheduler
+
+networks:
+  etl_network:
+    driver: bridge

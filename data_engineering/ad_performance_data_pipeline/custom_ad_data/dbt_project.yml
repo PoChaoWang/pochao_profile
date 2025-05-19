@@ -1,0 +1,22 @@
+name: "custom_ad_data"
+version: "1.0.0"
+
+profile: "custom_ad_data"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  custom_ad_data:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: incremental

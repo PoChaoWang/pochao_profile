@@ -1,0 +1,162 @@
+version: 2
+
+models:
+  - name: stg_criteo
+    description: "This table contains details about criteo."
+    columns:
+      - name: day
+        description: "Date the data was driven"
+        tests:
+          - not_null
+      - name: campaign
+        description: "Campaign information"
+        tests:
+          - not_null
+      - name: adgroup
+        description: "Ad group information"
+        tests:
+          - not_null
+      - name: impressions
+        description: "Impressions"
+      - name: clicks
+        description: "Clicks"
+      - name: cost
+        description: "Cost"
+    tests:
+      - unique:
+          combination:
+            - day
+            - campaign
+            - adgroup
+
+  - name: stg_facebook
+    description: "This table contains details about facebook."
+    columns:
+      - name: day
+        description: "Date the data was driven"
+        tests:
+          - not_null
+      - name: campaign
+        description: "Campaign information"
+        tests:
+          - not_null
+      - name: adgroup
+        description: "Ad group information"
+        tests:
+          - not_null
+      - name: impressions
+        description: "Impressions"
+      - name: clicks
+        description: "Clicks"
+      - name: cost
+        description: "Cost"
+    tests:
+      - unique:
+          combination:
+            - day
+            - campaign
+            - adgroup
+
+  - name: stg_google
+    description: "This table contains details about google."
+    columns:
+      - name: day
+        description: "Date the data was driven"
+        tests:
+          - not_null
+      - name: campaign
+        description: "Campaign information"
+        tests:
+          - not_null
+      - name: adgroup
+        description: "Ad group information"
+        tests:
+          - not_null
+      - name: impressions
+        description: "Impressions"
+      - name: clicks
+        description: "Clicks"
+      - name: cost
+        description: "Cost"
+    tests:
+      - unique:
+          combination:
+            - day
+            - campaign
+            - adgroup
+
+  - name: stg_yahoo
+    description: "This table contains details about yahoo."
+    columns:
+      - name: day
+        description: "Date the data was driven"
+        tests:
+          - not_null
+      - name: campaign
+        description: "Campaign information"
+        tests:
+          - not_null
+      - name: adgroup
+        description: "Ad group information"
+        tests:
+          - not_null
+      - name: impressions
+        description: "Impressions"
+      - name: clicks
+        description: "Clicks"
+      - name: cost
+        description: "Cost"
+    tests:
+      - unique:
+          combination:
+            - day
+            - campaign
+            - adgroup
+
+  - name: stg_ga
+    description: "This table contains details about ga."
+    columns:
+      - name: day
+        description: "Date the data was driven"
+        tests:
+          - not_null
+      - name: utm_source
+        description: "Platform information"
+        tests:
+          - not_null
+      - name: utm_medium
+        description: "Ad type information"
+        tests:
+          - not_null
+      - name: utm_campaign
+        description: "Campaign information"
+        tests:
+          - not_null
+      - name: utm_content
+        description: "Ad group information"
+        tests:
+          - not_null
+      - name: total_users
+        description: "The number of distinct users who have logged at least one event, regardless of whether the site or app was in use when that event was logged. "
+      - name: first_time_purchasers
+        description: "The number of users that completed their first purchase event."
+      - name: new_users
+        description: "The number of users who interacted with your site or launched your app for the first time (event triggered: first_open or first_visit)."
+      - name: bounce_rate
+        description: "The percentage of sessions that were not engaged ((Sessions Minus Engaged sessions) divided by Sessions)."
+      - name: sessions
+        description: "The number of sessions that began on your site or app (event triggered: session_start)."
+      - name: engaged_sessions
+        description: "The number of sessions that lasted longer than 10 seconds, or had a key event, or had 2 or more screen views."
+      - name: purchase_revenue
+        description: "The sum of revenue from purchases minus refunded transaction revenue made in your app or site."
+      - name: purchases
+        description: "The sum of revenue from purchases, subscriptions, and advertising (Purchase revenue plus Subscription revenue plus Ad revenue) minus refunded transaction revenue."
+    tests:
+      - unique:
+          combination:
+            - day
+            - utm_source
+            - utm_medium
+            - utm_campaign
+            - utm_content

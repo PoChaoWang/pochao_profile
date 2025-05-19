@@ -1,0 +1,32 @@
+name: Run Cron Job
+
+on:
+  schedule:
+    - cron: '0 0 * * *' 
+  workflow_dispatch:  
+
+jobs:
+  run-cron-job:
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2 
+
+      - name: Set up Python
+        uses: actions/setup-python@v2  
+        with:
+          python-version: '3.9'  
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  
+          pip install -r requirements.txt  
+
+      - name: Run script
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python3 backend/main.py
+        # run: python3 main.py
+
