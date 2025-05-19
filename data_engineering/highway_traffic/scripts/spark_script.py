@@ -27,7 +27,7 @@ logging.basicConfig(
 )
 
 # --- Spark 和 PostgreSQL 配置 ---
-POSTGRES_HOST = os.getenv("POSTGRES_HOST", "127.0.0.1")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "postgres")
 POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
 POSTGRES_DATABASE = os.getenv("POSTGRES_DB", "highway_traffic")
 POSTGRES_USER = os.getenv("POSTGRES_USER", "spark_user")

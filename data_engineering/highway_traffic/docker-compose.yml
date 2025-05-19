@@ -108,12 +108,15 @@ services:
     volumes:
       - ./dbt_highway_psql/profiles.yml:/root/.dbt/profiles.yml
       - ./dbt_highway_psql:/dbt
-    working_dir: /usr/app/dbt_project
+    working_dir: /dbt
     environment:
       DBT_PROFILE: dbt_highway_psql
       DBT_TARGET: dev
     depends_on:
       - postgres
+    entrypoint: sh
+    command: ["-c", "dbt deps && dbt run"]
+    # command: ["tail", "-f", "/dev/null"]
 
 networks:
   highway_network:

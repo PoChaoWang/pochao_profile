@@ -2,7 +2,7 @@ dbt_highway_psql:
   outputs:
     dev:
       dbname: "highway_traffic"
-      host: localhost
+      host: postgres
       pass: spark_password
       port: 5432
       schema: public
