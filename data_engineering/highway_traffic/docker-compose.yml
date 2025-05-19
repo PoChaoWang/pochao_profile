@@ -56,7 +56,6 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1 
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1 
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
-      # KAFKA_LOG_DIRS: "/var/lib/kafka/data" # 如果需要指定日誌目錄
     deploy:
       resources:
         limits:
@@ -64,14 +63,12 @@ services:
           memory: 2G
         
     volumes:
-      - kafka_data:/var/lib/kafka/data # 持久化 Kafka 數據
+      - kafka_data:/var/lib/kafka/data 
     networks:
       - highway_network
 
   spark-master:
     image: bitnami/spark:latest
-    # volumes:
-    #   - ./:/opt/bitnami/spark/
     command: bin/spark-class org.apache.spark.deploy.master.Master
     ports:
       - "9090:8080"
@@ -83,64 +80,19 @@ services:
   spark-worker-2:
     <<: *spark-common
 
-  # clickhouse-server:
-  #   image: clickhouse/clickhouse-server:25.4.4.25
-  #   container_name: highway-clickhouse-instance  
-  #   ports:
-  #     - "8123:8123"  
-  #     - "9000:9000"  
-  #   networks:
-  #     - highway_network
-  #   volumes:
-  #     - ./my_clickhouse_config/users.d:/etc/clickhouse-server/users.d
-  #     - ./clickhouse_data:/var/lib/clickhouse
-  #     - ./clickhouse_logs:/var/log/clickhouse-server
-  #   environment:
-  #     CLICKHOUSE_USER: 'spark_user'
-  #     CLICKHOUSE_PASSWORD: 'spark_password'
-  #     CLICKHOUSE_DB: 'spark_db'
-  #   ulimits: 
-  #     nproc: 65535
-  #     nofile:
-  #       soft: 262144
-  #       hard: 262144
-  #   restart: always
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         memory: 4G
-
-  # dbt-clickhouse-service:
-  #   build:
-  #     context: .  
-  #     dockerfile: dbt_highway_traffic/Dockerfile 
-  #   container_name: dbt_clickhouse_app
-  #   working_dir: /usr/app/dbt_highway_traffic 
-  #   volumes:
-  #     - ./dbt_highway_traffic:/usr/app/dbt_highway_traffic
-  #     - ~/.dbt:/root/.dbt
-      
-  #   networks:
-  #     - highway_network
-  #   depends_on:
-  #     - clickhouse-server
-  #   tty: true       
-  #   stdin_open: true 
-  #   command: tail -f /dev/null 
-
-  postgres: # New PostgreSQL service
-      image: postgres:14 # Using a specific version is good practice, you can use 'latest'
+  postgres: 
+      image: postgres:14 
       container_name: highway-postgres-instance
       ports:
         - "5432:5432"
       networks:
         - highway_network
       volumes:
-        - postgres_data:/var/lib/postgresql/data # Persistent data for PostgreSQL
+        - postgres_data:/var/lib/postgresql/data 
       environment:
-        POSTGRES_USER: 'spark_user' # Or your desired username
-        POSTGRES_PASSWORD: 'spark_password' # Or your desired password
-        POSTGRES_DB: 'highway_traffic' # Or your desired database name
+        POSTGRES_USER: 'spark_user' 
+        POSTGRES_PASSWORD: 'spark_password' 
+        POSTGRES_DB: 'highway_traffic' 
       restart: always
       deploy:
         resources:
@@ -154,7 +106,7 @@ services:
     networks:
       - highway_network
     volumes:
-      - ~/.dbt:/root
+      - ~/.dbt:/root/.dbt
       - ./dbt_highway_psql:/dbt
     working_dir: /usr/app/dbt_project
     environment:
@@ -167,6 +119,6 @@ networks:
   highway_network:
     driver: bridge
 
-volumes: # 定義持久化卷
+volumes: 
   kafka_data:
   postgres_data: # New volume for PostgreSQL data
