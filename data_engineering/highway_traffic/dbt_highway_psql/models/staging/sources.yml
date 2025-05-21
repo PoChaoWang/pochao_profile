@@ -1,9 +1,0 @@
-sources:
-  - name: dbt_highway_sql
-    description: "Raw data from highway traffic monitoring"
-    database: highway_traffic
-    schema: public
-    tables:
-      - name: highway_traffic_raw
-        description: "Highway traffic data including vehicle counts and speeds"
-       
