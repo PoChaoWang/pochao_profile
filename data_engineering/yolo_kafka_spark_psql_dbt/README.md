@@ -189,6 +189,43 @@ Note: This setup is for development and testing purposes only. For production us
 ## Configuration
 
 - **Kafka**: Configured in `docker-compose.yml` and scripts.
+  - By default, the system uses 1 controller and 1 broker for lower resource consumption.
+  - To scale up to 3 controllers and 3 brokers:
+    1. In `docker-compose.yml`, uncomment the following sections:
+       - Remove comments from `kafka-controller-2`, `kafka-controller-3`, `kafka-broker-2`, and `kafka-broker-3` services
+       - Update `KAFKA_CONTROLLER_QUORUM_VOTERS` to include all controllers:
+         ```
+         KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-controller-1:9093,2@kafka-controller-2:9093,3@kafka-controller-3:9093
+         ```
+       - Update `SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS` to include all brokers:
+         ```
+         SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-broker-1:9092,PLAINTEXT://kafka-broker-2:9092,PLAINTEXT://kafka-broker-3:9092
+         ```
+       - Update `KAFKA_BROKERS` in the console service:
+         ```
+         KAFKA_BROKERS=kafka-broker-1:9092,kafka-broker-2:9092,kafka-broker-3:9092
+         ```
+       - Uncomment all broker and controller volumes:
+         ```
+         volumes:
+           postgres_data:
+           broker_data_1:
+           broker_data_2:
+           broker_data_3:
+           controller_data_1:
+           controller_data_2:
+           controller_data_3:
+         ```
+    2. Update Kafka broker configuration in scripts:
+       - In `scripts/yolo_script.py`, uncomment and update the KAFKA_BROKERS:
+         ```python
+         KAFKA_BROKERS = "kafka-broker-1:9092,kafka-broker-2:9092,kafka-broker-3:9092"
+         ```
+       - In `scripts/spark_script.py`, uncomment and update the kafka_bootstrap_servers:
+         ```python
+         kafka_bootstrap_servers = "kafka-broker-1:9092,kafka-broker-2:9092,kafka-broker-3:9092"
+         ```
+    3. Note: Running 3 controllers and 3 brokers requires significant system resources. Ensure your system meets the requirements before scaling up.
 - **YOLO Model**: Place your YOLOv8 model weights (`yolov8s.pt`) in the `scripts/` directory.
 - **Speed Zones**: Configure in `scripts/speed_zones_config.json`.
 - **Database**: Connection parameters are set via environment variables or `.env` files.
