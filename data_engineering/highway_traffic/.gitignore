@@ -1,0 +1,10 @@
+highwaytraffic/
+kafka_2.13-3.9.0/
+logs/
+test/
+.dockerignore
+.env
+__pycache__
+yolo_json/
+img/
+mnt/

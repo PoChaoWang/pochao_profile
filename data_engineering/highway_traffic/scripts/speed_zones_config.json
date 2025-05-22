@@ -1,0 +1,28 @@
+{
+    "Linkou": {
+        "BASE_VIDEO_URL": "https://cctvn.freeway.gov.tw/abs2mjpg/bmjpg?camera=13940",
+        "SPEED_ZONES": [
+            {
+                "name": "H1_Linkou_north",
+                "line1_points": [[67, 153], [346, 198]],
+                "line2_points": [[177, 104], [346, 109]],
+                "real_length_meters": 34.0,
+                "line1_color": [0, 0, 255],
+                "line2_color": [0, 165, 255]
+            }
+        ]
+    },
+    "Zonghe": {
+        "BASE_VIDEO_URL": "https://cctvn.freeway.gov.tw/abs2mjpg/bmjpg?camera=33680",
+        "SPEED_ZONES": [
+            {
+                "name": "H3_Zonghe_north",
+                "line1_points": [[80, 108], [306, 115]],
+                "line2_points": [[3, 136], [346, 143]],
+                "real_length_meters": 24.0,
+                "line1_color": [0, 0, 255],
+                "line2_color": [0, 165, 255]
+            }
+        ]
+    }
+}

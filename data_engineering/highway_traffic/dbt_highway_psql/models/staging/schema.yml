@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_highway_traffic_raw
+    description: "Staging model for raw highway traffic data"
+    columns:
+      - name: date_utc
+        description: "UTC date of the capture"
+        test:
+          - not_null
+      - name: year
+        description: "Year of the capture"
+      - name: month
+        description: "Month of the capture"
+      - name: day
+        description: "Day of the capture"
+      - name: time_utc
+        description: "UTC time of the capture"
+        test:
+          - not_null
+      - name: hour
+        description: "Hour of the capture"
+      - name: minute
+        description: "Minute of the capture"
+      - name: second
+        description: "Second of the capture"
+      - name: object_id
+        description: "Unique identifier for the object"
+        test:
+          - not_null
+      - name: uuid
+        description: "UUID of the object in each frame"
+        test:
+          - not_null
+          - unique
+      - name: class
+        description: "Class of the object (e.g., car, truck)"
+      - name: bounding_box_x1
+        description: "X1 coordinate of the bounding box"
+      - name: bounding_box_y1
+        description: "Y1 coordinate of the bounding box"
+      - name: bounding_box_x2
+        description: "X2 coordinate of the bounding box"
+      - name: bounding_box_y2
+        description: "Y2 coordinate of the bounding box"
+      - name: confidence
+        description: "Confidence score of the detection"
+      - name: center_pixels_x
+        description: "X coordinate of the center of the object in pixels"
+      - name: center_pixels_y
+        description: "Y coordinate of the center of the object in pixels"
+      - name: zone_name
+        description: "Name of the zone where the object is detected"
+      - name: speed_kmh
+        description: "Speed of the object in km/h"
+      
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: ['date_utc', 'time_utc', 'object_id']
