@@ -14,7 +14,7 @@ Since the advertising platform APIs require company information and this project
 4. Schedule daily updates with Airflow.
 5. Package Airflow into Docker.
 
-![image](https://github.com/PoChaoWang/Ad_Performance_Data_Pipeline/blob/main/images/process.png)
+![image](images/process.png)
 
 ### Project Objective:
 
