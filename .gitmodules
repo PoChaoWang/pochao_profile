@@ -1,0 +1,12 @@
+[submodule "data_engineering/data_engineering"]
+	path = data_engineering/data_engineering
+	url = https://github.com/PoChaoWang/Secure-E-commerce-Customer-360-Platform
+[submodule "data_engineering/Secure-E-commerce-Customer-360-Platform"]
+	path = data_engineering/Secure-E-commerce-Customer-360-Platform
+	url = https://github.com/PoChaoWang/Secure-E-commerce-Customer-360-Platform
+[submodule "data_engineering/aws-data-pipeline-ml-platform"]
+	path = data_engineering/aws-data-pipeline-ml-platform
+	url = https://github.com/PoChaoWang/aws-data-pipeline-ml-platform
+[submodule "data_engineering/lalae-data-platform"]
+	path = data_engineering/lalae-data-platform
+	url = https://github.com/PoChaoWang/lalae-data-platform
