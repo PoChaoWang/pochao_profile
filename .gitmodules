@@ -10,3 +10,12 @@
 [submodule "data_engineering/lalae-data-platform"]
 	path = data_engineering/lalae-data-platform
 	url = https://github.com/PoChaoWang/lalae-data-platform
+[submodule "data_engineering/f1News-scraper"]
+	path = data_engineering/f1News-scraper
+	url = https://github.com/PoChaoWang/f1News-scraper
+[submodule "data_engineering/taipei_taxi_kafka_project"]
+	path = data_engineering/taipei_taxi_kafka_project
+	url = https://github.com/PoChaoWang/taipei_taxi_kafka_project
+[submodule "data_engineering/highway_traffic_streaming_datapipeline"]
+	path = data_engineering/highway_traffic_streaming_datapipeline
+	url = https://github.com/PoChaoWang/highway_traffic_streaming_datapipeline
