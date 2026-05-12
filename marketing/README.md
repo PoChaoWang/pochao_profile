@@ -1,5 +1,4 @@
 # Ecommerce Customer Intelligence & Predictive Growth Suite  
-## Repository: https://github.com/PoChaoWang/Ecommerce-Customer-Intelligence-Predictive-Growth-Suite
 
 ## Description:  
 一個以電商顧客資料為基礎的 Customer Intelligence 專案，將 RFM 分群、顧客情緒分析、LTV 預測、Cohort Retention、Product Affinity 與 Business Recommendation Engine 整合成一套可支援行銷決策的分析流程。
