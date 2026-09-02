@@ -1,21 +1,12 @@
-[submodule "data_engineering/data_engineering"]
-	path = data_engineering/data_engineering
-	url = https://github.com/PoChaoWang/Secure-E-commerce-Customer-360-Platform
-[submodule "data_engineering/Secure-E-commerce-Customer-360-Platform"]
-	path = data_engineering/Secure-E-commerce-Customer-360-Platform
-	url = https://github.com/PoChaoWang/Secure-E-commerce-Customer-360-Platform
-[submodule "data_engineering/aws-data-pipeline-ml-platform"]
-	path = data_engineering/aws-data-pipeline-ml-platform
-	url = https://github.com/PoChaoWang/aws-data-pipeline-ml-platform
-[submodule "data_engineering/lalae-data-platform"]
-	path = data_engineering/lalae-data-platform
-	url = https://github.com/PoChaoWang/lalae-data-platform
-[submodule "data_engineering/f1News-scraper"]
-	path = data_engineering/f1News-scraper
-	url = https://github.com/PoChaoWang/f1News-scraper
-[submodule "data_engineering/taipei_taxi_kafka_project"]
-	path = data_engineering/taipei_taxi_kafka_project
-	url = https://github.com/PoChaoWang/taipei_taxi_kafka_project
-[submodule "data_engineering/highway_traffic_streaming_datapipeline"]
-	path = data_engineering/highway_traffic_streaming_datapipeline
-	url = https://github.com/PoChaoWang/highway_traffic_streaming_datapipeline
+[submodule "amazon_kaggle_data_analysis"]
+	path = amazon_kaggle_data_analysis
+	url = https://github.com/Gibon4385/amazon_kaggle_data_analysis.git
+[submodule "lalae-data-platform"]
+	path = lalae-data-platform
+	url = https://github.com/Gibon4385/lalae-data-platform.git
+[submodule "Ecommerce-Customer-Intelligence-Predictive-Growth-Suite"]
+	path = Ecommerce-Customer-Intelligence-Predictive-Growth-Suite
+	url = https://github.com/PoChaoWang/Ecommerce-Customer-Intelligence-Predictive-Growth-Suite.git
+[submodule "digital-marketing-analyst-agent"]
+	path = digital-marketing-analyst-agent
+	url = https://github.com/PoChaoWang/Digital-Marketing-Analyst-Agency.git

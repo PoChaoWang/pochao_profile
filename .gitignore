@@ -1,5 +1,9 @@
+# macOS
 .DS_Store
-\.DS_Store$
-test/
-documents
-marketing/RetailRocket E-commerce
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Archived local projects (not tracked on GitHub)
+archive/
